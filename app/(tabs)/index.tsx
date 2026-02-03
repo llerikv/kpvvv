@@ -10,7 +10,6 @@ export default function HomeScreen() {
 
   const handleStart = () => {
     console.log("Начать нажато");
-    // тут позже добавим навигацию
   };
 
   return (
@@ -24,27 +23,23 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.container}>
-        {/* Заголовок */}
         <ThemedText type="title" style={styles.title}>
           Welcome, {userName} 👋
         </ThemedText>
 
         <HelloWave />
 
-        {/* Фото */}
         <Image
           source={require("../../assets/images/lake.jpg")}
           style={styles.photo}
         />
 
-        {/* Текст */}
         <ThemedText style={styles.description}>
           This app is created especially for you.{"\n"}
           Here you can start your journey, explore features{"\n"}
           and enjoy the experience together 💖
         </ThemedText>
 
-        {/* Кнопка */}
         <Button title="Начать" onPress={handleStart} />
       </ThemedView>
     </ParallaxScrollView>
@@ -66,11 +61,9 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   headerImage: {
-    height: 180,
-    width: 300,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   photo: {
     width: 220,
