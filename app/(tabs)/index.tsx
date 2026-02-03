@@ -8,7 +8,6 @@ import { Pressable, StyleSheet } from "react-native";
 export default function HomeScreen() {
   const userName = "Lerik";
 
-  // 🔹 добавлено
   const studentName = "Lerik";
   const courseName = "Mobile Application Development";
 
@@ -44,12 +43,17 @@ export default function HomeScreen() {
           записывать мысли, чувства и маленькие моменты своей жизни 🤍
         </ThemedText>
 
-        {/* 🔹 добавленный текст */}
-        <ThemedText style={styles.infoTitle}>Имя студента</ThemedText>
-        <ThemedText style={styles.infoText}>{studentName}</ThemedText>
+        {/* 🔹 карточка: Имя студента */}
+        <ThemedView style={styles.card}>
+          <ThemedText style={styles.cardTitle}>Имя студента</ThemedText>
+          <ThemedText style={styles.cardText}>{studentName}</ThemedText>
+        </ThemedView>
 
-        <ThemedText style={styles.infoTitle}>Название курса</ThemedText>
-        <ThemedText style={styles.infoText}>{courseName}</ThemedText>
+        {/* 🔹 карточка: Название курса */}
+        <ThemedView style={styles.card}>
+          <ThemedText style={styles.cardTitle}>Название курса</ThemedText>
+          <ThemedText style={styles.cardText}>{courseName}</ThemedText>
+        </ThemedView>
 
         {/* 🔹 кнопка со стилем */}
         <Pressable style={styles.button} onPress={handleStart}>
@@ -85,16 +89,33 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
 
-  // 🔹 добавленные стили
-  infoTitle: {
+  // 🔹 карточки с персиковым закатом
+  card: {
+    width: "100%",
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "rgba(255, 183, 135, 0.6)", // рамка персиковая полупрозрачная
+    backgroundColor: "rgba(255, 213, 181, 0.35)", // фон мягкий персиковый полупрозрачный
+    alignItems: "center",
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  cardTitle: {
+    fontSize: 14,
+    opacity: 0.6,
+    marginBottom: 4,
+  },
+  cardText: {
     fontSize: 18,
     fontWeight: "600",
-    marginTop: 8,
   },
-  infoText: {
-    fontSize: 16,
-    opacity: 0.85,
-  },
+
+  // 🔹 кнопка
   button: {
     marginTop: 24,
     backgroundColor: "#4A90E2",
