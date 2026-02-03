@@ -3,10 +3,14 @@ import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Image } from "expo-image";
-import { Button, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
-  const userName = "Albina and Lera";
+  const userName = "Lerik";
+
+  // 🔹 добавлено
+  const studentName = "Lerik";
+  const courseName = "Mobile Application Development";
 
   const handleStart = () => {
     console.log("Начать нажато");
@@ -35,12 +39,22 @@ export default function HomeScreen() {
         />
 
         <ThemedText style={styles.description}>
-          This app is created especially for you.{"\n"}
-          Here you can start your journey, explore features{"\n"}
-          and enjoy the experience together 💖
+          Это место только для тебя.{"\n"}
+          Здесь можно быть честным с собой,{"\n"}
+          записывать мысли, чувства и маленькие моменты своей жизни 🤍
         </ThemedText>
 
-        <Button title="Начать" onPress={handleStart} />
+        {/* 🔹 добавленный текст */}
+        <ThemedText style={styles.infoTitle}>Имя студента</ThemedText>
+        <ThemedText style={styles.infoText}>{studentName}</ThemedText>
+
+        <ThemedText style={styles.infoTitle}>Название курса</ThemedText>
+        <ThemedText style={styles.infoText}>{courseName}</ThemedText>
+
+        {/* 🔹 кнопка со стилем */}
+        <Pressable style={styles.button} onPress={handleStart}>
+          <ThemedText style={styles.buttonText}>Продолжить</ThemedText>
+        </Pressable>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -69,5 +83,28 @@ const styles = StyleSheet.create({
     width: 220,
     height: 220,
     borderRadius: 24,
+  },
+
+  // 🔹 добавленные стили
+  infoTitle: {
+    fontSize: 18,
+    fontWeight: "600",
+    marginTop: 8,
+  },
+  infoText: {
+    fontSize: 16,
+    opacity: 0.85,
+  },
+  button: {
+    marginTop: 24,
+    backgroundColor: "#4A90E2",
+    paddingVertical: 14,
+    paddingHorizontal: 36,
+    borderRadius: 16,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
