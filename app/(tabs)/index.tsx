@@ -2,7 +2,10 @@ import { HelloWave } from "@/components/hello-wave";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+
+import { ResizeMode, Video } from "expo-av";
 import { Image } from "expo-image";
+
 import { Button, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
@@ -14,11 +17,15 @@ export default function HomeScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      headerBackgroundColor={{ light: "#000", dark: "#000" }}
       headerImage={
-        <Image
-          source={require("../../assets/images/lake.jpg")}
-          style={styles.headerImage}
+        <Video
+          source={require("../../assets/videos/video.MOV")}
+          style={styles.headerVideo}
+          resizeMode={ResizeMode.COVER}
+          shouldPlay
+          isLooping
+          isMuted
         />
       }
     >
@@ -29,9 +36,11 @@ export default function HomeScreen() {
 
         <HelloWave />
 
+        {/* маленькая фотка */}
         <Image
-          source={require("../../assets/images/lake.jpg")}
+          source={require("../../assets/images/ya.jpg")}
           style={styles.photo}
+          contentFit="cover"
         />
 
         <ThemedText style={styles.description}>
@@ -52,19 +61,24 @@ const styles = StyleSheet.create({
     padding: 20,
     gap: 16,
   },
+
   title: {
     textAlign: "center",
   },
+
   description: {
     textAlign: "center",
     fontSize: 16,
     opacity: 0.8,
   },
-  headerImage: {
+
+  /* видео в шапке */
+  headerVideo: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
   },
+
+  /* маленькая фотография */
   photo: {
     width: 220,
     height: 220,
