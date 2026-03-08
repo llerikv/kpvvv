@@ -50,17 +50,17 @@ app.get("/todos/:id", async (req, res) => {
   
   // CREATE TODO
   app.post("/todos", async (req, res) => {
-    const { title } = req.body;
+    const { todo_text } = req.body;
   
     try {
       const result = await pool.query(
-        "INSERT INTO todo (title) VALUES ($1) RETURNING *",
-        [title]
+        "INSERT INTO todo (todo_text) VALUES ($1) RETURNING *",
+        [todo_text]
       );
   
       res.status(201).json(result.rows[0]);
     } catch (error) {
-      console.error("Error creating todo:", error);
+      console.error(error);
       res.status(500).json({ error: "Internal server error" });
     }
   });
@@ -68,12 +68,12 @@ app.get("/todos/:id", async (req, res) => {
 // UPDATE TODO
 app.put("/todos/:id", async (req, res) => {
     const { id } = req.params;
-    const { title } = req.body;
+    const { todo_text } = req.body;
   
     try {
       const result = await pool.query(
-        "UPDATE todo SET title = $1 WHERE id = $2 RETURNING *",
-        [title, id]
+        "UPDATE todo SET todo_text = $1 WHERE id = $2 RETURNING *",
+        [todo_text, id]
       );
   
       if (result.rows.length === 0) {
@@ -119,7 +119,7 @@ app.delete("/todos/:id", async (req, res) => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
-   
+                                                                                                                                                            
 //curl -X POST http://localhost:5000/todos -H "Content-Type: application/json" -d '{"title": "Buy groceries11"}'
 
 /*Get Health
